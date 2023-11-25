@@ -10,19 +10,19 @@ public class UIAnimController : MonoBehaviour
     public GameObject[] colors;
     public Sprite[] openAndCloseICon;
     public Image selectedIconPlacement;
-    public Vector3[] selectedcolorposition;
+    public Vector3[] selectedColorPosition;
     public bool isColorEnable = false;
     bool isDefaultColor = true;
-    Color defaultcarcolor = Color.green;
+    Color defaultCarColor = Color.green;
     [SerializeField]
     Material primaryColor;
-    Image openandclosebutton;
+    Image openAndCloseButton;
     Image selectedIcon;
 
     private void Start()
     {
         primaryColor.color = Color.red;
-        openandclosebutton = GetComponent<Image>();
+        openAndCloseButton = GetComponent<Image>();
         
     }
 
@@ -37,7 +37,7 @@ public class UIAnimController : MonoBehaviour
                 g.SetActive(true);
             }
             isColorEnable = true;
-            openandclosebutton.sprite = openAndCloseICon[1];
+            openAndCloseButton.sprite = openAndCloseICon[1];
         }
         else
         {
@@ -46,7 +46,7 @@ public class UIAnimController : MonoBehaviour
                 g.SetActive(false);
             }
             isColorEnable = false;
-            openandclosebutton.sprite = openAndCloseICon[0];
+            openAndCloseButton.sprite = openAndCloseICon[0];
         }
     }
 
@@ -58,7 +58,7 @@ public class UIAnimController : MonoBehaviour
             if (primaryColor.color != Color.red)
             {
                 primaryColor.color = Color.red;
-                selectedIconPlacement.rectTransform.localPosition = selectedcolorposition[0];
+                selectedIconPlacement.rectTransform.localPosition = selectedColorPosition[0];
                 isDefaultColor = false;
             }
             else
@@ -77,7 +77,7 @@ public class UIAnimController : MonoBehaviour
             if (primaryColor.color != Color.blue)
             {
                 primaryColor.color = Color.blue;
-                selectedIconPlacement.rectTransform.localPosition = selectedcolorposition[1];
+                selectedIconPlacement.rectTransform.localPosition = selectedColorPosition[1];
                 isDefaultColor = false;
             }
         }
@@ -91,7 +91,7 @@ public class UIAnimController : MonoBehaviour
             if (primaryColor.color != Color.yellow)
             {
                 primaryColor.color = Color.yellow;
-                selectedIconPlacement.rectTransform.localPosition = selectedcolorposition[2];
+                selectedIconPlacement.rectTransform.localPosition = selectedColorPosition[2];
                 isDefaultColor = false;
             }
         }

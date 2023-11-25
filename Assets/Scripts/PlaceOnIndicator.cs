@@ -11,42 +11,40 @@ public class PlaceOnIndicator : MonoBehaviour
     [SerializeField]
     GameObject placementIndicator;
     [SerializeField]
-    GameObject placedPrefab;
     GameObject spawnedObject;
 
-    public bool placedMarkerstatus = false;
+    public bool placedMarkerStatus = false;
     public bool placedModelStatus = false;
 
-    ARRaycastManager aRRaycastManager;
+    ARRaycastManager arrayCastManager;
     List<ARRaycastHit> hits = new List<ARRaycastHit>();
 
-    [SerializeField]
-    DownloadAssetBundle downloadasset;
+    DownloadAssetBundle downLoadAsset;
 
     private void Awake()
     {
-        aRRaycastManager = GetComponent<ARRaycastManager>();
+        arrayCastManager = GetComponent<ARRaycastManager>();
         placementIndicator.SetActive(false);
 
     }
 
     private void Start()
     {
-        downloadasset = GetComponent<DownloadAssetBundle>();
+        downLoadAsset = GetComponent<DownloadAssetBundle>();
     }
 
     private void Update()
     {
-        if(aRRaycastManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.PlaneWithinPolygon))
+        if(arrayCastManager.Raycast(new Vector2(Screen.width / 2, Screen.height / 2), hits, TrackableType.PlaneWithinPolygon))
         {
             var hitpose = hits[0].pose;
             placementIndicator.transform.SetPositionAndRotation(hitpose.position, hitpose.rotation);
 
-            if(!placementIndicator.activeInHierarchy && placedMarkerstatus)
+            if(!placementIndicator.activeInHierarchy && placedMarkerStatus)
             {
                 placementIndicator.SetActive(true);
             }
-            else if(placementIndicator.activeInHierarchy && ! placedMarkerstatus)
+            else if(placementIndicator.activeInHierarchy && ! placedMarkerStatus)
             {
                 placementIndicator.SetActive(false);
             }
@@ -55,12 +53,12 @@ public class PlaceOnIndicator : MonoBehaviour
 
     public void EnableDisablePlacedMarker()
     {
-        if (!placedMarkerstatus)
+        if (!placedMarkerStatus)
         {
-        placedMarkerstatus = true;
+        placedMarkerStatus = true;
         }
         else
-        placedMarkerstatus = false;
+        placedMarkerStatus = false;
     }
 
     public void PlacedObject()
@@ -70,7 +68,7 @@ public class PlaceOnIndicator : MonoBehaviour
 
         if (spawnedObject == null)
         {
-            spawnedObject = Instantiate(downloadasset.InstantiateGameObjFromServer(), placementIndicator.transform.position, placementIndicator.transform.rotation);
+            spawnedObject = Instantiate(downLoadAsset.InstantiateGameObjFromServer(), placementIndicator.transform.position, placementIndicator.transform.rotation);
         }
         else
         {

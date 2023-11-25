@@ -8,7 +8,7 @@ using UnityEngine.Networking;
 
 public class DownloadAssetBundle : MonoBehaviour
 {
-    public GameObject model = null;
+    GameObject model = null;
 
     private void Start()
     {
